@@ -3,6 +3,7 @@ extends Control
 @onready var bar = $Bar;
 @onready var target = $TargetZone;
 @onready var tick = $Tick;
+@onready var goal = $Goal;
 
 @onready var barLeftBound = bar.position.x;
 @onready var barRightBound = bar.position.x + bar.size.x;
@@ -12,18 +13,22 @@ var speed := 300;
 var direction := 1;
 
 # game loop
-var effort = 7;
-var effortGoal = 30;
+var effort = 7; # starting amount
+var effortGoal = 30; # amount needed to reel
 
-var successGain = 10;
-var failPenalty = 5;
+var successGain = 10; # effort gained when landed on target
+var failPenalty = 5; # effort loss when fail to land on target
 
 var minTargetWidth = 20;
 var targetShrinkAmount = 5;
 
+# communicate with main ui
+signal fishingResults(results);
+
 func _ready() -> void:
 	$".".visible = false;
 	tick.position.y = bar.position.y - 5;
+	goal.text = "Goal: " + str(effort) + "/" + str(effortGoal);
 	
 	# set & randomize target starting positon
 	randomizeTarget();
@@ -48,6 +53,7 @@ func _input(event: InputEvent) -> void:
 	
 	if (event.is_action_pressed("ui_accept")):
 		checkSuccess();
+		updateGoal();
 
 func checkSuccess():
 	#print("Effort: ", effort);
@@ -62,7 +68,7 @@ func checkSuccess():
 		effort += successGain;
 		
 		if effort >= effortGoal:
-			endFishing("FISH CAUGHT");
+			endFishing(1);
 			
 		shrinkTarget(-7);
 		setTickSpeed(50)
@@ -70,7 +76,7 @@ func checkSuccess():
 		effort -= failPenalty;
 		
 		if effort <= 0:
-			endFishing("FISH GOT AWAY");
+			endFishing(0);
 		
 		if target.size.x <= 40 :
 			shrinkTarget(5); # make wider when player struggling
@@ -94,8 +100,17 @@ func randomizeTarget():
 	
 func setTickSpeed(x):
 	speed += x;
+	
+func updateGoal():
+	goal.text = "Goal: " + str(effort) + "/" + str(effortGoal);
 
-func endFishing(status: String):
-	print(status)
+func endFishing(status: int):
+	if status == 1:
+		print("FISH WAS CAUGHT!");
+	else:
+		print("FISH GOT AWAY!");
+
 	$".".visible = false;
 	get_tree().paused = false;
+	
+	emit_signal("fishingResults", status);
