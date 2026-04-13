@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://bmmxllfglp50h"]
+
+[ext_resource type="Script" uid="uid://2rqkgjworfv7" path="res://scripts/fishing_ui.gd" id="1_ulnet"]
+
+[node name="FishingUI" type="Control" unique_id=1332898019]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ulnet")
+
+[node name="Bar" type="ColorRect" parent="." unique_id=1882628249]
+custom_minimum_size = Vector2(400, 20)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -20.0
+offset_right = 200.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.3019608, 0.4627451, 1, 1)
+
+[node name="TargetZone" type="ColorRect" parent="." unique_id=1422063847]
+custom_minimum_size = Vector2(80, 20)
+layout_mode = 0
+offset_left = 263.0
+offset_top = 160.0
+offset_right = 343.0
+offset_bottom = 200.0
+color = Color(0.81960785, 0.8, 0.11764706, 1)
+
+[node name="Tick" type="ColorRect" parent="." unique_id=1036952379]
+custom_minimum_size = Vector2(4, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -23.0
+offset_right = -196.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Goal" type="Label" parent="." unique_id=1620125720]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Goal: "

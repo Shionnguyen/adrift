@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://yecyeqdgbi7l"]
+
+[ext_resource type="Texture2D" uid="uid://mvltb6fx54v8" path="res://assets/1.png" id="1_0wfyh"]
+[ext_resource type="Script" uid="uid://cpct4kuvxnmyj" path="res://scripts/main.gd" id="1_jyhfs"]
+[ext_resource type="Texture2D" uid="uid://c2vgsrngdj6l2" path="res://assets/rowboat.png" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://bmmxllfglp50h" path="res://scenes/fishing_ui.tscn" id="3_sugp2"]
+
+[node name="Main" type="Node2D" unique_id=253514747]
+script = ExtResource("1_jyhfs")
+
+[node name="background" type="Sprite2D" parent="." unique_id=2131496585]
+position = Vector2(320, 180)
+scale = Vector2(1.2295523, 1.2295524)
+texture = ExtResource("1_0wfyh")
+
+[node name="player" type="Sprite2D" parent="." unique_id=2016107847]
+texture_filter = 1
+position = Vector2(320, 277)
+scale = Vector2(0.2300218, 0.19865517)
+texture = ExtResource("2_0wfyh")
+
+[node name="FishingUI" parent="." unique_id=1332898019 instance=ExtResource("3_sugp2")]
+offset_left = 320.0
+offset_top = 180.0
+offset_right = 320.0
+offset_bottom = 180.0
