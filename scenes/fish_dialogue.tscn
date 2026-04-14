@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://7exyvsucnvda"]
+
+[ext_resource type="FontFile" uid="uid://dch7eeaxa2mt6" path="res://assets/DepartureMono-Regular.otf" id="1_csfld"]
+[ext_resource type="Texture2D" uid="uid://dxm2d221xcqfh" path="res://assets/fishing-pack/4 Icons/Icons_09.png" id="2_csfld"]
+[ext_resource type="FontFile" uid="uid://dk1exr5mwoepf" path="res://assets/madoufmg.ttf" id="2_u6h5j"]
+
+[node name="fishDialogue" type="CanvasLayer" unique_id=985572632]
+
+[node name="control" type="Control" parent="." unique_id=842121313]
+custom_minimum_size = Vector2(500, 250)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -125.0
+offset_right = 250.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="control" unique_id=695175123]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="control/Panel" unique_id=922352845]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -242.0
+offset_top = -102.5
+offset_right = 242.0
+offset_bottom = 102.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="control/Panel/HBoxContainer" unique_id=3724830]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="alias" type="Label" parent="control/Panel/HBoxContainer/VBoxContainer" unique_id=859763983]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.38039216, 0.67058825, 0.83137256, 1)
+theme_override_colors/font_shadow_color = Color(0.34901962, 0.5019608, 0.8, 1)
+theme_override_fonts/font = ExtResource("1_csfld")
+text = "blewish"
+uppercase = true
+
+[node name="dialogue" type="Label" parent="control/Panel/HBoxContainer/VBoxContainer" unique_id=127392329]
+custom_minimum_size = Vector2(300, 80)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_csfld")
+text = "blurb blurb im a blue fish. what else does a fish say"
+vertical_alignment = 1
+autowrap_mode = 2
+justification_flags = 171
+
+[node name="choices" type="VBoxContainer" parent="control/Panel/HBoxContainer/VBoxContainer" unique_id=144328578]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Button" type="Button" parent="control/Panel/HBoxContainer/VBoxContainer/choices" unique_id=235997919]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7137577, 0.7206708, 0.13539767, 1)
+theme_override_fonts/font = ExtResource("2_u6h5j")
+text = "> where's your spark???"
+flat = true
+alignment = 0
+
+[node name="Button2" type="Button" parent="control/Panel/HBoxContainer/VBoxContainer/choices" unique_id=1466679172]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7137255, 0.72156864, 0.13725491, 1)
+theme_override_fonts/font = ExtResource("2_u6h5j")
+text = "> hello world"
+flat = true
+alignment = 0
+
+[node name="portrait" type="TextureRect" parent="control/Panel/HBoxContainer" unique_id=1808326021]
+texture_filter = 1
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+texture = ExtResource("2_csfld")
+expand_mode = 4
+stretch_mode = 5

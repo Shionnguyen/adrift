@@ -25,7 +25,7 @@ var targetShrinkAmount = 5;
 # communicate with main ui
 signal fishingResults(results);
 
-func _ready() -> void:
+func _ready() -> void:	
 	$".".visible = false;
 	tick.position.y = bar.position.y - 5;
 	goal.text = "Goal: " + str(effort) + "/" + str(effortGoal);
@@ -70,8 +70,8 @@ func checkSuccess():
 		if effort >= effortGoal:
 			endFishing(1);
 			
-		shrinkTarget(-7);
-		setTickSpeed(50)
+		shrinkTarget(-20);
+		setTickSpeed(100);
 	else:
 		effort -= failPenalty;
 		
@@ -107,6 +107,7 @@ func updateGoal():
 func endFishing(status: int):
 	if status == 1:
 		print("FISH WAS CAUGHT!");
+		# fish dialogue appears
 	else:
 		print("FISH GOT AWAY!");
 
@@ -114,3 +115,18 @@ func endFishing(status: int):
 	get_tree().paused = false;
 	
 	emit_signal("fishingResults", status);
+	
+func resetState():
+	effort = 7
+	speed = 300
+	direction = 1
+
+	# reset target size back to original
+	target.custom_minimum_size.x = 80 
+	target.size.x = 80
+
+	# reset tick position to start
+	tick.position.x = barLeftBound;
+
+	randomizeTarget();
+	updateGoal();

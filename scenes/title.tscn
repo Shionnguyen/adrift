@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://dl3soaunmeayk" path="res://assets/5.png" id="1_4ignj"]
 [ext_resource type="FontFile" uid="uid://dk1exr5mwoepf" path="res://assets/madoufmg.ttf" id="2_wosw1"]
 [ext_resource type="Script" uid="uid://bao487m5kbp27" path="res://scripts/button_manager.gd" id="3_p6dhs"]
+[ext_resource type="Texture2D" uid="uid://dmqfbanwh0fu8" path="res://assets/rowboat-pixel.png" id="4_pyl7j"]
+[ext_resource type="Texture2D" uid="uid://dsmeg0yafnmu2" path="res://assets/3.png" id="5_b3w7a"]
 
 [node name="Title" type="Node2D" unique_id=632808523]
 
@@ -12,21 +14,22 @@ scale = Vector2(0.28433648, 0.28433648)
 texture = ExtResource("1_4ignj")
 
 [node name="Title" type="Label" parent="." unique_id=1355160323]
-offset_left = 191.0
-offset_top = 128.0
-offset_right = 495.0
-offset_bottom = 189.0
+offset_left = 198.0
+offset_top = 134.0
+offset_right = 468.0
+offset_bottom = 211.0
 theme_override_colors/font_color = Color(0.19215687, 0.32941177, 0.4862745, 1)
 theme_override_fonts/font = ExtResource("2_wosw1")
 theme_override_font_sizes/font_size = 60
-text = "project 26"
+text = "departure"
+uppercase = true
 
 [node name="ButtonManager" type="HBoxContainer" parent="." unique_id=573171020]
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -1.0
-offset_top = 237.0
+offset_top = 249.0
 offset_right = 654.0
 offset_bottom = 366.0
 grow_horizontal = 2
@@ -63,6 +66,19 @@ theme_override_fonts/font = ExtResource("2_wosw1")
 theme_override_font_sizes/font_size = 25
 text = "quit"
 flat = true
+
+[node name="RowboatPixel" type="Sprite2D" parent="." unique_id=2146178370]
+position = Vector2(494, 210)
+scale = Vector2(0.44667122, 0.44667113)
+texture = ExtResource("4_pyl7j")
+
+[node name="cloud" type="TextureRect" parent="." unique_id=803367304]
+offset_left = 76.0
+offset_top = 68.0
+offset_right = 700.20087
+offset_bottom = 419.11298
+scale = Vector2(0.73765427, 0.7376543)
+texture = ExtResource("5_b3w7a")
 
 [connection signal="pressed" from="ButtonManager/start" to="ButtonManager" method="_on_start_pressed"]
 [connection signal="pressed" from="ButtonManager/Options" to="ButtonManager" method="_on_options_pressed"]
