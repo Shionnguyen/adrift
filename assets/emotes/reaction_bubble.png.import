@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2vgsrngdj6l2"
-path="res://.godot/imported/rowboat.png-d8d993364de90a2b474f88c884746546.ctex"
+uid="uid://c3w3w2rhqt3rv"
+path="res://.godot/imported/reaction_bubble.png-bcc2926cdcd814d4ad97638f426f3aa4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/rowboat.png"
-dest_files=["res://.godot/imported/rowboat.png-d8d993364de90a2b474f88c884746546.ctex"]
+source_file="res://assets/emotes/reaction_bubble.png"
+dest_files=["res://.godot/imported/reaction_bubble.png-bcc2926cdcd814d4ad97638f426f3aa4.ctex"]
 
 [params]
 

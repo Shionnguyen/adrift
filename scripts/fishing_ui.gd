@@ -8,6 +8,8 @@ extends Control
 @onready var barLeftBound = bar.position.x;
 @onready var barRightBound = bar.position.x + bar.size.x;
 
+@onready var animations = $"../CharacterBody2D";
+
 # movement
 var speed := 300;
 var direction := 1;
@@ -56,7 +58,6 @@ func _input(event: InputEvent) -> void:
 		updateGoal();
 
 func checkSuccess():
-	#print("Effort: ", effort);
 	var tickX = tick.position.x;
 
 	var targetMin = target.position.x;

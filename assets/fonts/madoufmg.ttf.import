@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://didt07vsfhurq"
-path="res://.godot/imported/UncutSans-Semibold.otf-b823f1aa72c8889911a970221801a384.fontdata"
+uid="uid://dk1exr5mwoepf"
+path="res://.godot/imported/madoufmg.ttf-240e5f31cc080c4fbc73ea6a0cc4cd3c.fontdata"
 
 [deps]
 
-source_file="res://assets/UncutSans-Semibold.otf"
-dest_files=["res://.godot/imported/UncutSans-Semibold.otf-b823f1aa72c8889911a970221801a384.fontdata"]
+source_file="res://assets/fonts/madoufmg.ttf"
+dest_files=["res://.godot/imported/madoufmg.ttf-240e5f31cc080c4fbc73ea6a0cc4cd3c.fontdata"]
 
 [params]
 
