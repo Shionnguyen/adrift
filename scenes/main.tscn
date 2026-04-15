@@ -202,13 +202,15 @@ texture_filter = 1
 position = Vector2(473, 250)
 scale = Vector2(2.5859377, 2.5859377)
 sprite_frames = SubResource("SpriteFrames_ya4ey")
-animation = &"hooked"
+animation = &"fishing"
+frame_progress = 0.73165786
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1799454523]
 position = Vector2(454, 274)
 shape = SubResource("RectangleShape2D_tbgi4")
 
 [node name="reaction" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=1287756413]
+texture_filter = 1
 position = Vector2(451, 193.00002)
 scale = Vector2(1.1875, 1.1875)
 sprite_frames = SubResource("SpriteFrames_og1vs")

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cgvg0brio7bmh"]
 
 [ext_resource type="Texture2D" uid="uid://dl3soaunmeayk" path="res://assets/5.png" id="1_4ignj"]
-[ext_resource type="FontFile" uid="uid://dk1exr5mwoepf" path="res://assets/madoufmg.ttf" id="2_wosw1"]
+[ext_resource type="FontFile" uid="uid://dk1exr5mwoepf" path="res://assets/fonts/madoufmg.ttf" id="2_wosw1"]
 [ext_resource type="Script" uid="uid://bao487m5kbp27" path="res://scripts/button_manager.gd" id="3_p6dhs"]
 [ext_resource type="Texture2D" uid="uid://dmqfbanwh0fu8" path="res://assets/rowboat-pixel.png" id="4_pyl7j"]
 [ext_resource type="Texture2D" uid="uid://dsmeg0yafnmu2" path="res://assets/3.png" id="5_b3w7a"]
@@ -28,10 +28,9 @@ uppercase = true
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1.0
-offset_top = 249.0
-offset_right = 654.0
-offset_bottom = 366.0
+offset_top = 309.0
+offset_right = 655.0
+offset_bottom = 343.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -41,9 +40,11 @@ alignment = 1
 script = ExtResource("3_p6dhs")
 
 [node name="start" type="Button" parent="ButtonManager" unique_id=1781587889]
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 0.8901961, 0.6039216, 1)
 theme_override_colors/font_hover_color = Color(1, 0.7490196, 0.42745098, 1)
+theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("2_wosw1")
 theme_override_font_sizes/font_size = 25
 text = "start"
