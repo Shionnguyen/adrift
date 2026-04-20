@@ -18,7 +18,7 @@ var direction := 1;
 var effort = 7; # starting amount
 var effortGoal = 30; # amount needed to reel
 
-var successGain = 10; # effort gained when landed on target
+var successGain = 15; # effort gained when landed on target
 var failPenalty = 5; # effort loss when fail to land on target
 
 var minTargetWidth = 20;

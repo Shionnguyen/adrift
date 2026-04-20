@@ -23,7 +23,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if onSkyScene:
-		if event.is_action_pressed("ui_accept"): # go to next dialogue
+		if event.is_action_pressed("ui_accept"):
 			onSkyScene = false;
 			skyScene.visible = false
 			gameStarts();
@@ -34,14 +34,14 @@ func _input(event: InputEvent) -> void:
 		fishingUI.visible = true;
 		
 		# change fishing hut to be more in the background
-		$FishingHut.modulate = Color(0.5, 0.5, 0.5, 1.0);
+		$Game/FishingHut.modulate = Color(0.5, 0.5, 0.5, 1.0);
 		animations.playerAnimate("fishing", 0.8);
 		animations.reactionSprite.stop();
 		animations.reactionSprite.visible = false;
 		
 func onFishingEnd(results):
 	fishingStatus.visible = true;
-	$FishingHut.modulate = Color(1.0, 1.0, 1.0, 1.0);
+	$Game/FishingHut.modulate = Color(1.0, 1.0, 1.0, 1.0);
 	
 	if results == 1:
 		fishingStatus.text = "You caught a fish!";
@@ -68,4 +68,4 @@ func playSkyScene():
 	# player will wake up looking at the sky
 	# dialogue appears  [ ... ]
 	$Sky/Dialogue/Label.text = "..."
-	$Sky/Dialogue.visible = true
+	$Sky/Dialogue.visible = true;

@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://di6xcsqa45340"]
+
+[node name="Dialogue" type="Node2D" unique_id=2041076262]
+
+[node name="Panel" type="Panel" parent="." unique_id=1370579286]
+offset_left = 120.0
+offset_top = 260.0
+offset_right = 550.0
+offset_bottom = 346.0
+
+[node name="Text" type="RichTextLabel" parent="." unique_id=2096486234]
+offset_right = 40.0
+offset_bottom = 40.0
+text = "120, 260"
