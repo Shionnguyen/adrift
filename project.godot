@@ -15,6 +15,10 @@ run/main_scene="uid://cgvg0brio7bmh"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+FishData="*uid://dgged2ouuiefu"
+
 [display]
 
 window/size/viewport_width=640

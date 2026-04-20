@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://7exyvsucnvda"]
 
-[ext_resource type="FontFile" uid="uid://dch7eeaxa2mt6" path="res://assets/DepartureMono-Regular.otf" id="1_csfld"]
+[ext_resource type="FontFile" uid="uid://dch7eeaxa2mt6" path="res://assets/fonts/DepartureMono-Regular.otf" id="1_csfld"]
+[ext_resource type="Script" uid="uid://cwh57rdeadxt2" path="res://scripts/fish_dialogue.gd" id="1_u6h5j"]
 [ext_resource type="Texture2D" uid="uid://dxm2d221xcqfh" path="res://assets/fishing-pack/4 Icons/Icons_09.png" id="2_csfld"]
-[ext_resource type="FontFile" uid="uid://dk1exr5mwoepf" path="res://assets/madoufmg.ttf" id="2_u6h5j"]
+[ext_resource type="FontFile" uid="uid://dk1exr5mwoepf" path="res://assets/fonts/madoufmg.ttf" id="2_u6h5j"]
 
 [node name="fishDialogue" type="CanvasLayer" unique_id=985572632]
+script = ExtResource("1_u6h5j")
 
 [node name="control" type="Control" parent="." unique_id=842121313]
 custom_minimum_size = Vector2(500, 250)
