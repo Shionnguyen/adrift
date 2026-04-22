@@ -24,6 +24,12 @@ var fish: Fish;
 var current_step: int = 0; # bookmark of where you are in dialogue array cuz fish dialogue is just an array of steps
 var waiting_for_input: bool = false # should pressing space/enter do anything right now?
 
+# creating a typewriter effect
+var is_typing: bool = false
+var full_text: String = ""
+var typing_tween: Tween = null
+var typing_delay: float = 0.03; # adjust typing speed
+
 func setup(f: Fish):
 	fish = f
 	current_step = 0
@@ -46,8 +52,9 @@ func _show_step(index: int) -> void:
 	match speaker:
 		"fish":
 			alias_label.text = fish.fish_name.to_upper()
-			dialogue_label.text = step["text"]
+			#dialogue_label.text = step["text"]
 			waiting_for_input = true; # always wait for user choice, no exceptions
+			type_text(step["text"]);
 
 		"player":
 			alias_label.text = "YOU"
@@ -57,19 +64,53 @@ func _show_step(index: int) -> void:
 
 		"monologue":
 			alias_label.text = "..."
-			dialogue_label.text = step["text"]
+			#dialogue_label.text = step["text"]
 			waiting_for_input = true
+			type_text(step["text"]);
+
+
+# ---------------------------------------------------------------------------
+#  typewriter effect while fishes are talking
+# ---------------------------------------------------------------------------
+func type_text(text: String) -> void:
+	full_text = text
+	dialogue_label.text = ""
+	is_typing = true
+
+	if typing_tween:
+		typing_tween.kill()
+
+	typing_tween = create_tween()
+
+	for i in range(text.length()):
+		typing_tween.tween_callback(func(): 
+			dialogue_label.text = full_text.left(dialogue_label.text.length() + 1)
+		).set_delay(typing_delay)  # adjust speed here — lower = faster
+
+	typing_tween.tween_callback(func():
+		is_typing = false;
+		waiting_for_input = true
+	)
 
 # ---------------------------------------------------------------------------
 #  turning off keyboard advancement until a choice is made
 # ---------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
-	 # ignore ALL input, if false
-	if not waiting_for_input:
-		return;
-	
-	# Fish is talking, player reads and presses space to continue
 	if event.is_action_pressed("ui_accept"):
+		# if is still typing, skip to full text
+		if is_typing:
+			if typing_tween:
+				typing_tween.kill()
+			dialogue_label.text = full_text
+			is_typing = false
+			waiting_for_input = true;
+			return
+		
+		 # otherwise, ignore ALL input, if false
+		if not waiting_for_input:
+			return;
+		
+		# Fish is talking, player reads and presses space to continue			
 		waiting_for_input = false;
 
 		var step = fish.dialogue[current_step]

@@ -54,8 +54,7 @@ static func firstFish() -> Fish:
 # ---------------------------------------------------------------------------
 # How the dialogue per fish works: 
 # Fish -> Player (always next line or element)
-# Player element includes a "label"key with text and a "next" key with jump to line
-# 
+# Player element includes a "label" key with text and a "next" key with jump to line
 # 		-1 : fish resolved / good end
 #		-2 : fish escapes  / bad end
 # ---------------------------------------------------------------------------
