@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="Adrift"
-run/main_scene="uid://cgvg0brio7bmh"
+run/main_scene="uid://yecyeqdgbi7l"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 FishData="*uid://dgged2ouuiefu"
+GameState="*uid://g8yemdvofpdb"
 
 [display]
 

@@ -5,10 +5,19 @@ extends Node
 # Add new fish here. main.gd pulls from this pool randomly.
 # ---------------------------------------------------------------------------
 
+static func getFirstFish() -> Fish:
+	return firstFish();
+
+static func getGentlePool() -> Array[Fish]:
+	return [grumpyOldMan()];
+	
+static func getHeavyPool() -> Array[Fish]:
+	return [waitingLady()];
+
+
 static func getPool() -> Array[Fish]:
 	var pool: Array[Fish] = [];
 	
-	pool.append(commonSoul());
 	pool.append(grumpyOldMan());
 	pool.append(waitingLady());
 	
@@ -17,10 +26,10 @@ static func getPool() -> Array[Fish]:
 # ---------------------------------------------------------------------------
 # COMMON SOUL  (gentle — linear, no choices)
 # ---------------------------------------------------------------------------
-static func commonSoul() -> Fish:
+static func firstFish() -> Fish:
 	var f = Fish.new()
-	f.fish_name = "???"
-	f.type = Fish.Type.GENTLE
+	f.fish_name = "lorem ipsum";
+	f.type = Fish.Type.GENTLE;
 	f.dialogue = [
 		{
 			"speaker": "fish",
@@ -41,6 +50,17 @@ static func commonSoul() -> Fish:
 		}
 	]
 	return f
+
+# ---------------------------------------------------------------------------
+# How the dialogue per fish works: 
+# Fish -> Player (always next line or element)
+# Player element includes a "label"key with text and a "next" key with jump to line
+# 
+# 		-1 : fish resolved / good end
+#		-2 : fish escapes  / bad end
+# ---------------------------------------------------------------------------
+
+# ---
 
 # ---------------------------------------------------------------------------
 # GRUMPY OLD MAN  (heavy — branches, one bad end)
@@ -187,4 +207,25 @@ static func waitingLady() -> Fish:
 			]
 		}
 	]
+	return f
+	
+static func kidFish():
+	# for when the kid fish is freed:
+	# GameState.collected_items["kid_soundtrack"] = true
+	# GameState.freed_souls.append("kid_fish")
+	pass
+
+static func loverFish() -> Fish:
+	var f = Fish.new()
+	f.fish_name = "A Lover"
+	f.type = Fish.Type.GENTLE
+	
+	# dialogue changes based on world state
+	if GameState.collected_items.get("kid_soundtrack", false):
+		#f.dialogue = loverDialogue_withSong()
+		pass
+	else:
+		#f.dialogue = loverDialogue_default()
+		pass
+	
 	return f

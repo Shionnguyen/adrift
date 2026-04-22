@@ -24,6 +24,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="control" unique_id=695175123]
+self_modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -93,3 +94,4 @@ layout_mode = 2
 texture = ExtResource("2_csfld")
 expand_mode = 4
 stretch_mode = 5
+flip_h = true
