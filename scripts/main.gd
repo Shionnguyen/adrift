@@ -5,7 +5,7 @@ extends Node2D
 @onready var fishingStatus = $Game/FishStatus;
 
 # visual effects / assets (?)
-@onready var animations = $Game/CharacterBody2D;
+#@onready var animations;
 
 # scenes
 @onready var skyScene = $Sky;
@@ -29,8 +29,8 @@ func _ready() -> void:
 	gameScene.visible = false;
 	skyScene.visible = true;
 	playSkyScene();
-	await get_tree().create_timer(3).timeout;
-	$Sky/Dialogue/Label.text = "...\n(press [space] to proceed)"
+	await get_tree().create_timer(5).timeout;
+	$Sky/Dialogue/Label.text = "...\npress [space] to proceed"
 
 # ---------------------------------------------------------------------------
 # Input
@@ -60,8 +60,6 @@ func gameStarts():
 	fishingUI.visible = false;
 	fishingStatus.visible = false;
 	fishingUI.fishingResults.connect(onFishingEnd);
-	animations.playerAnimate("idle", 0.3);
-	animations.reactionAnimate("waiting", 0.2);
 
 func playSkyScene():
 	# player will wake up looking at the sky
@@ -82,7 +80,7 @@ func show_dialogue():
 	var tween = create_tween()
 	tween.set_parallel(true)
 
-	tween.tween_property(dlg, "modulate:a", 1.0, 2)
+	tween.tween_property(dlg, "modulate:a", 1.0, 1)
 	tween.tween_property(dlg, "scale", Vector2(1, 1), 0.25)\
 		.set_trans(Tween.TRANS_BACK)\
 		.set_ease(Tween.EASE_OUT)
@@ -93,23 +91,12 @@ func show_dialogue():
 func startFishing():
 	fishingUI.resetState();
 	fishingUI.visible = true;
-	
-	# change fishing hut to be more in the background
-	$Game/FishingHut.modulate = Color(0.5, 0.5, 0.5, 1.0);
-	animations.visible = false;
-	animations.playerAnimate("boy_fish", 0.8);
-	animations.reactionSprite.stop();
-	animations.reactionSprite.visible = false;
-
 
 # ---------------------------------------------------------------------------
 # Fishing result → pick a fish → show dialogue
 # ---------------------------------------------------------------------------
 func onFishingEnd(results):
 	fishingStatus.visible = true;
-	$Game/FishingHut.modulate = Color(1.0, 1.0, 1.0, 1.0);
-	animations.playerAnimate("hooked", 1)
-	animations.playerAnimate("idle", 0.5)
 	
 	if results == 1:
 		#fishingStatus.text = "You caught a fish!";
