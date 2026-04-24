@@ -61,10 +61,7 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("start fishing"): # start fishing when f is pressed
 		startFishing();
-		
 
-func showHint (text: String):
-	hintOverlay.text = text; 
 
 # ---------------------------------------------------------------------------
 # Scene flow
@@ -111,6 +108,10 @@ func startFishing():
 	fishingUI.resetState();
 	fishingUI.visible = true;
 
+
+func showHint (text: String):
+	hintOverlay.text = text; 
+
 # ---------------------------------------------------------------------------
 # Fishing result → pick a fish → show dialogue
 # ---------------------------------------------------------------------------
@@ -118,16 +119,18 @@ func onFishingEnd(results):
 	characterBoat.visible = true;
 	fishingStatus.visible = true;
 	
-	if results == 1:
-		#fishingStatus.text = "You caught a fish!";
+	if results == 1: # you caught a fish
 		currentFish = pickRandomFish();
+		
+		if currentFish == null:
+			fishingStatus.text = "The water is quiet... nothing left to find."
+			return;
+		
 		onDialoguePresent = true;
-		characterBoat.visible = false;
 		showDialogue();
 	else:
 		characterBoat.visible = true;
 		fishingStatus.text = "The fish got away...";
-
 
 # ++++++++++++++++++++++++++++++++++++++++
 # randomized fish pool 
@@ -138,16 +141,27 @@ func pickRandomFish():
 	if not firstFishSeen:
 		firstFishSeen = true;
 		return FishData.getFirstFish();
+		
+	# weighted roll : 70% common, 30% heavy, or whatever feels right
+	var roll = randf();
+	var pool: Array;
 	
-	# weighted roll: 70% common, 30% heavy, or whatever feels right
-	if randf() < 0.7:
-		var pool = FishData.getGentlePool();
-		return pool[randi() % pool.size()];
+	if roll < 0.7:
+		pool = FishData.getGentlePool();
+		if pool.is_empty():  # fallback if all gentle fish freed
+			pool = FishData.getHeavyPool();
 	else:
-		var pool = FishData.getHeavyPool();
-		return pool[randi() % pool.size()];
+		pool = FishData.getHeavyPool();
+		if pool.is_empty():  # fallback if all heavy fish freed
+			pool = FishData.getGentlePool();
+	
+	if pool.is_empty():
+		return null  # TODO: handle "all fish freed" end state
+	
+	return pool[randi() % pool.size()];
 	
 func showDialogue():
+	characterBoat.visible = false;
 	var dialogue_instance = dialogue_scene.instantiate(); # create the dialogue ; create an address
 	add_child(dialogue_instance); # add to tree ; placing address to visible land
 	
@@ -158,6 +172,7 @@ func onDialogueFinished(outcome: String) -> void:
 	match outcome:
 		"escaped":
 			characterBoat.visible = true;
+			GameState.free_soul(currentFish.fish_id);
 			fishingStatus.text = "The soul dissolves into light..."
 			# TODO: play dissolve VFX, award soul fragment
 			print("SOUL FREED — good end")
@@ -210,3 +225,4 @@ func doBlackout(message: String) -> void:
 	t.tween_interval(3.0)
 	t.tween_property(overlay, "color:a", 0.0, 1.0)
 	t.tween_callback(canvas.queue_free)
+	t.tween_callback(func(): onDialoguePresent = false);

@@ -9,19 +9,48 @@ static func getFirstFish() -> Fish:
 	return firstFish();
 
 static func getGentlePool() -> Array[Fish]:
-	return [grumpyOldMan()];
+	var pool = [];
+	
+	if not GameState.tutorial_complete:
+		pool.append(grumpyOldMan())  # tutorial only
+	else:
+		if GameState.soul_tier == 2:
+			pool.append(kidFish());
+			pool.append(loverFish());
+		elif GameState.soul_tier == 3:
+			pass # add more gentle fish here
+		
+	return filterPool(pool);
 	
 static func getHeavyPool() -> Array[Fish]:
-	return [waitingLady()];
-
-
-static func getPool() -> Array[Fish]:
-	var pool: Array[Fish] = [];
+	var pool = [];
 	
-	pool.append(grumpyOldMan());
-	pool.append(waitingLady());
-	
-	return pool;
+	if not GameState.tutorial_complete:
+		pool.append(waitingLady());
+	else:
+		if GameState.soul_tier == 2:
+			pass; # add more heavy hearted fish here
+		#else:
+			#pass
+		
+	return filterPool(pool);
+	#var pool: Array[Fish] = [];
+	#
+	#pool.append(grumpyOldMan());
+	#pool.append(waitingLady());
+	#
+	#return pool;
+
+static func filterPool(pool: Array) -> Array:
+	return pool.filter(func(f): return not GameState.freed_souls.has(f.fish_id))
+
+# ---------------------------------------------------------------------------
+# How the dialogue per fish works: 
+# Fish -> Player (always next line or element)
+# Player element includes a "label" key with text and a "next" key with jump to line
+# 		-1 : fish resolved / good end
+#		-2 : fish escapes  / bad end
+# ---------------------------------------------------------------------------
 
 # ---------------------------------------------------------------------------
 # COMMON SOUL  (gentle — linear, no choices)
@@ -29,7 +58,7 @@ static func getPool() -> Array[Fish]:
 static func firstFish() -> Fish:
 	var f = Fish.new()
 	f.fish_name = "lorem ipsum";
-	f.type = Fish.Type.GENTLE;
+	f.fish_id = "first_fish";
 	f.dialogue = [
 		{
 			"speaker": "fish",
@@ -52,22 +81,12 @@ static func firstFish() -> Fish:
 	return f
 
 # ---------------------------------------------------------------------------
-# How the dialogue per fish works: 
-# Fish -> Player (always next line or element)
-# Player element includes a "label" key with text and a "next" key with jump to line
-# 		-1 : fish resolved / good end
-#		-2 : fish escapes  / bad end
-# ---------------------------------------------------------------------------
-
-# ---
-
-# ---------------------------------------------------------------------------
 # GRUMPY OLD MAN  (heavy — branches, one bad end)
 # ---------------------------------------------------------------------------
 static func grumpyOldMan() -> Fish:
 	var f = Fish.new()
 	f.fish_name = "Old Soul"
-	f.type = Fish.Type.HEAVY
+	f.fish_id = "grumpy_old_man";
 	f.dialogue = [
 		# 0
 		{
@@ -147,7 +166,7 @@ static func grumpyOldMan() -> Fish:
 static func waitingLady() -> Fish:
 	var f = Fish.new()
 	f.fish_name = "A Lady"
-	f.type = Fish.Type.HEAVY
+	f.fish_id = "waiting_lady"
 	f.dialogue = [
 		# 0
 		{
@@ -209,6 +228,10 @@ static func waitingLady() -> Fish:
 	return f
 	
 static func kidFish():
+	var f = Fish.new()
+	f.fish_name = "Kid"
+	f.fish_id = "kid_fish"
+	
 	# for when the kid fish is freed:
 	# GameState.collected_items["kid_soundtrack"] = true
 	# GameState.freed_souls.append("kid_fish")
@@ -216,12 +239,13 @@ static func kidFish():
 
 static func loverFish() -> Fish:
 	var f = Fish.new()
-	f.fish_name = "A Lover"
-	f.type = Fish.Type.GENTLE
+	f.fish_name = "Lover Fish";
+	f.fish_id = "lover_fish";
 	
 	# dialogue changes based on world state
 	if GameState.collected_items.get("kid_soundtrack", false):
 		#f.dialogue = loverDialogue_withSong()
+		f.fish_id = "lover_fish_return";
 		pass
 	else:
 		#f.dialogue = loverDialogue_default()
