@@ -28,8 +28,9 @@ var onDialoguePresent: bool = false;
 func _ready() -> void:
 	gameScene.visible = false;
 	skyScene.visible = true;
-	onSkyScene = true;
 	playSkyScene();
+	await get_tree().create_timer(3).timeout;
+	$Sky/Dialogue/Label.text = "...\n(press [space] to proceed)"
 
 # ---------------------------------------------------------------------------
 # Input
@@ -65,8 +66,29 @@ func gameStarts():
 func playSkyScene():
 	# player will wake up looking at the sky
 	# dialogue appears  [ ... ]
+	onSkyScene = true;
 	$Sky/Dialogue/Label.text = "..."
-	$Sky/Dialogue.visible = true;
+	#$Sky/Dialogue.visible = true;
+	show_dialogue();
+
+func show_dialogue():
+	var dlg = $Sky/Dialogue
+	dlg.visible = true
+
+	# initial state (hidden + small)
+	dlg.modulate.a = 0.0
+	dlg.scale = Vector2(0.85, 0.85)
+
+	var tween = create_tween()
+	tween.set_parallel(true)
+
+	tween.tween_property(dlg, "modulate:a", 1.0, 2)
+	tween.tween_property(dlg, "scale", Vector2(1, 1), 0.25)\
+		.set_trans(Tween.TRANS_BACK)\
+		.set_ease(Tween.EASE_OUT)
+	tween.tween_property(dlg, "position:y", dlg.position.y - 10, 0.25)\
+		.set_trans(Tween.TRANS_BACK)\
+		.set_ease(Tween.EASE_OUT)
 
 func startFishing():
 	fishingUI.resetState();
