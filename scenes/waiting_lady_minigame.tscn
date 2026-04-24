@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://dsck06mxj3av0"]
+
+[ext_resource type="Texture2D" uid="uid://dn64mi6v8723j" path="res://assets/waiting-lady-assets/ocean-background.png" id="1_wmx42"]
+[ext_resource type="Texture2D" uid="uid://ej8gq5mvvqr" path="res://assets/waiting-lady-assets/lady.png" id="2_frcnd"]
+[ext_resource type="Texture2D" uid="uid://b6dctqstobd0t" path="res://assets/waiting-lady-assets/ui-overlay.png" id="3_y7tm1"]
+[ext_resource type="Texture2D" uid="uid://c8h2ved6yf0g3" path="res://assets/character/boy.png" id="4_ykqj0"]
+[ext_resource type="Texture2D" uid="uid://c5lxw8hkch88a" path="res://assets/fishing-pack/3 Objects/Boat.png" id="5_ebao5"]
+[ext_resource type="Texture2D" uid="uid://cutsehra8nexe" path="res://assets/waiting-lady-assets/heart.png" id="6_f7m6s"]
+
+[node name="waiting_lady_minigame" type="Node2D" unique_id=1253465488]
+
+[node name="OceanBackground" type="Sprite2D" parent="." unique_id=1702944380]
+position = Vector2(337.04626, 184)
+scale = Vector2(0.39598835, 0.3959883)
+texture = ExtResource("1_wmx42")
+
+[node name="Lady" type="Sprite2D" parent="." unique_id=1759731039]
+position = Vector2(597.00006, 41)
+scale = Vector2(0.16469957, 0.16469957)
+texture = ExtResource("2_frcnd")
+
+[node name="UiOverlay" type="Sprite2D" parent="." unique_id=2017043720]
+position = Vector2(597.6875, 44.919052)
+scale = Vector2(0.3473501, 0.3473501)
+texture = ExtResource("3_y7tm1")
+
+[node name="Boy" type="Sprite2D" parent="." unique_id=940890098]
+texture_filter = 1
+position = Vector2(167, 244)
+texture = ExtResource("4_ykqj0")
+
+[node name="Boat" type="Sprite2D" parent="." unique_id=373865937]
+texture_filter = 1
+position = Vector2(166, 257)
+texture = ExtResource("5_ebao5")
+
+[node name="Heart" type="Sprite2D" parent="." unique_id=183633470]
+texture_filter = 1
+position = Vector2(35.046234, 20)
+scale = Vector2(1.5625, 1.5625)
+texture = ExtResource("6_f7m6s")
+
+[node name="Heart2" type="Sprite2D" parent="." unique_id=1922421603]
+texture_filter = 1
+position = Vector2(73.046234, 20.000002)
+scale = Vector2(1.5625, 1.5625)
+texture = ExtResource("6_f7m6s")

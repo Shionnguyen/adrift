@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ltj8hltfaemp"
-path="res://.godot/imported/omori-overlay.png-aef5f039d3bd0cb25f398edbd434d82e.ctex"
+uid="uid://ej8gq5mvvqr"
+path="res://.godot/imported/lady.png-8030c860821fdcfa7e307e7f84823622.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/omori-overlay.png"
-dest_files=["res://.godot/imported/omori-overlay.png-aef5f039d3bd0cb25f398edbd434d82e.ctex"]
+source_file="res://assets/waiting-lady-assets/lady.png"
+dest_files=["res://.godot/imported/lady.png-8030c860821fdcfa7e307e7f84823622.ctex"]
 
 [params]
 
