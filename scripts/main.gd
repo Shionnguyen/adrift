@@ -19,6 +19,8 @@ var onSkyScene: bool = true;
 var firstFishSeen: bool = false; # so that the first fish displays once
 var currentFish: Fish = null;
 
+var onDialoguePresent: bool = false;
+
 
 # ---------------------------------------------------------------------------
 # Startup
@@ -40,8 +42,14 @@ func _input(event: InputEvent) -> void:
 			gameStarts();
 		return;
 	
-	if event.is_action_pressed("start fishing"): # f is pressed
-		startFishing();
+	# start fishing if not:
+	# on sky scene (done)
+	# in dialogue (done)
+	# minigame (not started)
+	if not onDialoguePresent:
+		if event.is_action_pressed("start fishing"): # f is pressed
+			startFishing();
+	return;
 
 # ---------------------------------------------------------------------------
 # Scene flow
@@ -66,7 +74,8 @@ func startFishing():
 	
 	# change fishing hut to be more in the background
 	$Game/FishingHut.modulate = Color(0.5, 0.5, 0.5, 1.0);
-	animations.playerAnimate("fishing", 0.8);
+	animations.visible = false;
+	animations.playerAnimate("boy_fish", 0.8);
 	animations.reactionSprite.stop();
 	animations.reactionSprite.visible = false;
 
@@ -83,7 +92,7 @@ func onFishingEnd(results):
 	if results == 1:
 		#fishingStatus.text = "You caught a fish!";
 		currentFish = pickRandomFish();
-		
+		onDialoguePresent = true;
 		showDialogue();
 	else:
 		fishingStatus.text = "The fish got away...";
@@ -127,8 +136,10 @@ func onDialogueFinished(outcome: String) -> void:
 		"minigame":
 			# Waiting Lady — flower collect minigame
 			# TODO: load flower minigame scene, pass _current_fish back in
-			fishingStatus.text = "Something is happening..."
+			fishingStatus.text = "Something is happening... *minigame wip*"
 			print("MINIGAME TRIGGERED")
+	
+	onDialoguePresent = false;
 
 # ---------------------------------------------------------------------------
 # Blackout -> fade into minigame

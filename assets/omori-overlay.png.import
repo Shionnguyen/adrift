@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4raxt4mnmnsq"
-path="res://.godot/imported/bar.png-e8aaf8a0e118f9629c16853d30b569a1.ctex"
+uid="uid://ltj8hltfaemp"
+path="res://.godot/imported/omori-overlay.png-aef5f039d3bd0cb25f398edbd434d82e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/fishingUI/bar.png"
-dest_files=["res://.godot/imported/bar.png-e8aaf8a0e118f9629c16853d30b569a1.ctex"]
+source_file="res://assets/omori-overlay.png"
+dest_files=["res://.godot/imported/omori-overlay.png-aef5f039d3bd0cb25f398edbd434d82e.ctex"]
 
 [params]
 

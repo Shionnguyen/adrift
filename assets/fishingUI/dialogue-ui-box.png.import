@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b605ha7hetg4f"
-path="res://.godot/imported/UI Big Play Button.png-14e91d17c7875a96b230af781bdf676f.ctex"
+uid="uid://cju1p0xscyx6t"
+path="res://.godot/imported/dialogue-ui-box.png-1e9d3a2b533fe10ad4a2c2f1b6be4020.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/fishingUI/UI Big Play Button.png"
-dest_files=["res://.godot/imported/UI Big Play Button.png-14e91d17c7875a96b230af781bdf676f.ctex"]
+source_file="res://assets/fishingUI/dialogue-ui-box.png"
+dest_files=["res://.godot/imported/dialogue-ui-box.png-1e9d3a2b533fe10ad4a2c2f1b6be4020.ctex"]
 
 [params]
 
