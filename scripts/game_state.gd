@@ -3,6 +3,5 @@
 extends Node
 
 var soul_fragments: int = 0
-var freed_souls: Array[String] = []      # fish_ids of freed souls
-var collected_items: Dictionary = {}     # "kid_soundtrack" : true
-var player_flags: Dictionary = {}        # freeform story flags
+var seen_fish: Array[String] = []      # fishes you've talked to (can't see again)
+var escaped_fish: Array[String] = []   # fishes that escaped (second chance pool)

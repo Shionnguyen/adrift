@@ -1,18 +1,18 @@
-extends CharacterBody2D
+extends Control
 
-@onready var playerSprite = $player;
-@onready var reactionSprite = $reaction;
+@onready var playerSprite = $Player;
+var reactionSprite;
 
 func playerAnimate(name, pace):
 	playerSprite.speed_scale = pace;
 	playerSprite.play(name);
 	await playerSprite.animation_finished;
 
-func reactionAnimate(name, pace):
-	reactionSprite.visible = true;
-	reactionSprite.speed_scale = pace;
-	reactionSprite.play(name);
-	await reactionSprite.animation_finished;
+#func reactionAnimate(name, pace):
+	#reactionSprite.visible = true;
+	#reactionSprite.speed_scale = pace;
+	#reactionSprite.play(name);
+	#await reactionSprite.animation_finished;
 
 # DEFAULT CODE FOR PLAYER MOVEMENT
 #

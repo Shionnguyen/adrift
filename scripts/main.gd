@@ -1,5 +1,9 @@
 extends Node2D
 
+# sky scenes & states (very beginning of the game)
+@onready var skyScene = $Sky;
+var onSkyScene: bool = true;
+
 # fishing assets
 @onready var fishingUI = $Game/FishingUI;
 @onready var fishingStatus = $Game/FishStatus;
@@ -7,18 +11,21 @@ extends Node2D
 # visual effects / assets (?)
 #@onready var animations;
 
+# character assets
+@onready var characterBoat = $Game/characterBoat;
+
+# labels
+@onready var hintOverlay = $Game/HintOverlay;
+
 # scenes
-@onready var skyScene = $Sky;
 @onready var gameScene = $Game;
 
 # dialogue
 var dialogue_scene = preload("res://scenes/fish_dialogue.tscn");
 
 # states
-var onSkyScene: bool = true;
 var firstFishSeen: bool = false; # so that the first fish displays once
 var currentFish: Fish = null;
-
 var onDialoguePresent: bool = false;
 
 
@@ -29,28 +36,35 @@ func _ready() -> void:
 	gameScene.visible = false;
 	skyScene.visible = true;
 	playSkyScene();
+	
+	# show a hint if the user is stuck
 	await get_tree().create_timer(5).timeout;
 	$Sky/Dialogue/Label.text = "...\npress [space] to proceed"
+
 
 # ---------------------------------------------------------------------------
 # Input
 # ---------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
-	if onSkyScene: # beginning
+	if onSkyScene: # don't fish when sky scene is present
 		if event.is_action_pressed("ui_accept"):
 			onSkyScene = false;
 			skyScene.visible = false
 			gameStarts();
+			
+			await get_tree().create_timer(5).timeout;
+			showHint("press [f] key to fish");
 		return;
 	
-	# start fishing if not:
-	# on sky scene (done)
-	# in dialogue (done)
-	# minigame (not started)
-	if not onDialoguePresent:
-		if event.is_action_pressed("start fishing"): # f is pressed
-			startFishing();
-	return;
+	if onDialoguePresent: # don't fish when dialogue is present
+		return;
+	
+	if event.is_action_pressed("start fishing"): # start fishing when f is pressed
+		startFishing();
+		
+
+func showHint (text: String):
+	hintOverlay.text = text; 
 
 # ---------------------------------------------------------------------------
 # Scene flow
@@ -89,6 +103,11 @@ func show_dialogue():
 		.set_ease(Tween.EASE_OUT)
 
 func startFishing():
+	# set our character on the boat invisible and reset hint overlay
+	characterBoat.visible = false;
+	hintOverlay.visible = false;
+	hintOverlay.text = "";
+	
 	fishingUI.resetState();
 	fishingUI.visible = true;
 
@@ -96,16 +115,25 @@ func startFishing():
 # Fishing result → pick a fish → show dialogue
 # ---------------------------------------------------------------------------
 func onFishingEnd(results):
+	characterBoat.visible = true;
 	fishingStatus.visible = true;
 	
 	if results == 1:
 		#fishingStatus.text = "You caught a fish!";
 		currentFish = pickRandomFish();
 		onDialoguePresent = true;
+		characterBoat.visible = false;
 		showDialogue();
 	else:
+		characterBoat.visible = true;
 		fishingStatus.text = "The fish got away...";
-		
+
+
+# ++++++++++++++++++++++++++++++++++++++++
+# randomized fish pool 
+# - tutorial phase (blank fish -> grumpy old man -> waiting lady)
+# - open phase
+# # ++++++++++++++++++++++++++++++++++++++++
 func pickRandomFish():
 	if not firstFishSeen:
 		firstFishSeen = true;
@@ -129,11 +157,13 @@ func showDialogue():
 func onDialogueFinished(outcome: String) -> void:
 	match outcome:
 		"escaped":
+			characterBoat.visible = true;
 			fishingStatus.text = "The soul dissolves into light..."
 			# TODO: play dissolve VFX, award soul fragment
 			print("SOUL FREED — good end")
 
 		"ran_away":
+			characterBoat.visible = true;
 			fishingStatus.text = "The fish got away."
 			# No reward
 			print("FISH got AWAY — bad end")
