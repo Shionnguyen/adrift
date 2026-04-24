@@ -8,7 +8,7 @@ extends Node
 static func getFirstFish() -> Fish:
 	return firstFish();
 
-static func getGentlePool() -> Array[Fish]:
+static func getGentlePool() -> Array:
 	var pool = [];
 	
 	if not GameState.tutorial_complete:
@@ -22,7 +22,7 @@ static func getGentlePool() -> Array[Fish]:
 		
 	return filterPool(pool);
 	
-static func getHeavyPool() -> Array[Fish]:
+static func getHeavyPool() -> Array:
 	var pool = [];
 	
 	if not GameState.tutorial_complete:
@@ -34,12 +34,6 @@ static func getHeavyPool() -> Array[Fish]:
 			#pass
 		
 	return filterPool(pool);
-	#var pool: Array[Fish] = [];
-	#
-	#pool.append(grumpyOldMan());
-	#pool.append(waitingLady());
-	#
-	#return pool;
 
 static func filterPool(pool: Array) -> Array:
 	return pool.filter(func(f): return not GameState.freed_souls.has(f.fish_id))
