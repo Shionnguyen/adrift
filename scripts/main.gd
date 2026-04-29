@@ -193,6 +193,8 @@ func onDialogueFinished(outcome: String) -> void:
 			# TODO: load flower minigame scene, pass _current_fish back in
 			fishingStatus.text = "Something is happening... *minigame wip*"
 			print("MINIGAME TRIGGERED")
+			get_tree().create_timer(2).timeout;
+			get_tree().change_scene_to_file("res://scenes/waiting_lady_minigame.tscn");
 		
 		
 		

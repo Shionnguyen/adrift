@@ -20,21 +20,21 @@ size = Vector2(43, 24)
 script = ExtResource("1_ebao5")
 
 [node name="OceanBackground" type="Sprite2D" parent="." unique_id=1702944380]
-position = Vector2(337.04626, 184)
+position = Vector2(331.0463, 184)
 scale = Vector2(0.39598835, 0.3959883)
 texture = ExtResource("1_wmx42")
 
-[node name="Lady" type="Sprite2D" parent="." unique_id=1759731039]
-visible = false
-texture_filter = 1
-position = Vector2(597.00006, 41)
-scale = Vector2(0.16469957, 0.16469957)
-texture = ExtResource("2_frcnd")
-
 [node name="UiOverlay" type="Sprite2D" parent="." unique_id=2017043720]
+visible = false
 position = Vector2(597.6875, 44.919052)
 scale = Vector2(0.3473501, 0.3473501)
 texture = ExtResource("3_y7tm1")
+
+[node name="Lady" type="Sprite2D" parent="UiOverlay" unique_id=1759731039]
+texture_filter = 1
+position = Vector2(-1.9788818, -11.28273)
+scale = Vector2(0.47416008, 0.47416008)
+texture = ExtResource("2_frcnd")
 
 [node name="DialogueLabel" type="Label" parent="UiOverlay" unique_id=1583906967]
 offset_left = -603.67773
@@ -70,8 +70,9 @@ script = ExtResource("11_bhpuc")
 present_scene = ExtResource("12_5cvaq")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=961382185]
+offset_top = 10.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 50.0
 
 [node name="Hearts" type="Sprite2D" parent="HBoxContainer" unique_id=1996882830]
 texture_filter = 1
