@@ -6,7 +6,9 @@ enum Outcome { ESCAPED, RAN_AWAY, FREED, PASSED_OUT }
 
 @export var fish_id: String = ""; # unique key e.g. "kid_fish", "waiting_lady"
 @export var fish_name: String = ""; # display name
-@export var portrait: Texture2D;
+#@export var portrait: Texture2D;
+@export var portraits: Dictionary = {}
+# e.g. { "default": <Texture>, "angry": <Texture>, "satisfied": <Texture> }
 
 # for heavy hearted souls
 @export var has_minigame: bool = false;

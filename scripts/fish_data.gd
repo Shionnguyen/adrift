@@ -53,6 +53,9 @@ static func firstFish() -> Fish:
 	var f = Fish.new()
 	f.fish_name = "???";
 	f.fish_id = "first_fish";
+	f.portraits = {
+		"default": preload("res://assets/fishing-pack/Icons/Icons_10.png"),
+	}
 	f.dialogue = [
 		{
 			"speaker": "fish",
@@ -79,13 +82,18 @@ static func firstFish() -> Fish:
 # ---------------------------------------------------------------------------
 static func grumpyOldMan() -> Fish:
 	var f = Fish.new()
-	f.fish_name = "Old Soul"
+	f.fish_name = "Grumpy Man"
 	f.fish_id = "grumpy_old_man";
+	f.portraits = {
+		"default": preload("res://assets/fish portrait/grumpy-man/man.PNG"),
+		"angry": preload("res://assets/fish portrait/grumpy-man/man_angry.PNG"),
+	}
+	
 	f.dialogue = [
 		# 0
 		{
 			"speaker": "fish",
-			"text": "Humph! Careful with that line! Kids these days have no respect at all. Where are your parents? I need to talk to them!"
+			"text": "Humph! Careful with that line! Kids these days have no respect at all. Where are your parents? I need to talk to them!",
 		},
 		# 1 — first choice
 		{
@@ -100,7 +108,7 @@ static func grumpyOldMan() -> Fish:
 		# 2
 		{
 			"speaker": "fish",
-			"text": "At least you know when to apologize. That's rare, these days."
+			"text": "At least you know when to apologize. That's rare, these days.",
 		},
 		# 3
 		{
@@ -115,7 +123,7 @@ static func grumpyOldMan() -> Fish:
 		{
 			"speaker": "fish",
 			"text": "Hmph. Well. Intentions matter, I suppose.",
-			"next": -1
+			"next": -1,
 		},
 		# 5
 		{
@@ -127,7 +135,8 @@ static func grumpyOldMan() -> Fish:
 		# 6
 		{
 			"speaker": "fish",
-			"text": "OF COURSE I AM UPSET! You yanked me out like I was nothing!"
+			"text": "OF COURSE I AM UPSET! You yanked me out like I was nothing!",
+			"emotion": "angry",
 		},
 		# 7
 		{
@@ -148,6 +157,7 @@ static func grumpyOldMan() -> Fish:
 		{
 			"speaker": "fish",
 			"text": "THIS CHILD— no manners, no patience, no— ugh. I don't have time for this.",
+			"emotion": "angry",
 			"next": -2  # fish runs away
 		}
 	]
@@ -161,7 +171,9 @@ static func waitingLady() -> Fish:
 	var f = Fish.new()
 	f.fish_name = "A Lady"
 	f.fish_id = "waiting_lady"
-	f.portrait = load("res://assets/waiting-lady-assets/lady.png");
+	f.portraits = {
+			"default": preload("res://assets/waiting-lady-assets/lady.png"),
+		}
 	f.dialogue = [
 		# 0
 		{

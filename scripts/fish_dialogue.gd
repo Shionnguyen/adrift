@@ -30,14 +30,36 @@ var full_text: String = ""
 var typing_tween: Tween = null
 var typing_delay: float = 0.03; # adjust typing speed
 
+# something
+signal emotion_changed(emotion: String);
+
+# ---------------------------------------------------------------------------
+#  ui setup display for the text and portrait
+# ---------------------------------------------------------------------------
 func setup(f: Fish):
 	fish = f
 	current_step = 0
 	alias_label.text = fish.fish_name.to_upper()
 	
-	if fish.portrait:
-		portrait_rect.texture = fish.portrait
+	#if fish.portrait:
+		#portrait_rect.texture = fish.portrait
+	
+	updatePortrait("default");
+		
 	_show_step(current_step)
+
+func updatePortrait(emotion: String):
+	if GameState.currentFish == null:
+		return;
+		
+#	set a default portrait
+	var tex = GameState.currentFish.portraits.get(
+		emotion,
+		GameState.currentFish.portraits.get("default")
+	)
+	
+	if tex:
+		portrait_rect.texture = tex
 
 func _show_step(index: int) -> void:
 	if index >= fish.dialogue.size():
@@ -48,6 +70,9 @@ func _show_step(index: int) -> void:
 	_clear_choices()
 
 	var speaker = step.get("speaker", "fish")
+	
+	if step.has("emotion"):
+		updatePortrait(step["emotion"]);
 
 	match speaker:
 		"fish":
@@ -121,6 +146,9 @@ func _input(event: InputEvent) -> void:
 			current_step += 1
 			_show_step(current_step)
 
+# ---------------------------------------------------------------------------
+#  building how the choices are displayed
+# ---------------------------------------------------------------------------
 func _build_choices(choices: Array) -> void:
 	for choice in choices:
 		var btn = Button.new()

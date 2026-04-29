@@ -25,7 +25,7 @@ var dialogue_scene = preload("res://scenes/fish_dialogue.tscn");
 
 # states
 var firstFishSeen: bool = false; # so that the first fish displays once
-var currentFish: Fish = null;
+#var currentFish: Fish = null;
 var onDialoguePresent: bool = false;
 
 
@@ -120,9 +120,9 @@ func onFishingEnd(results):
 	fishingStatus.visible = true;
 	
 	if results == 1: # you caught a fish
-		currentFish = pickRandomFish();
+		GameState.currentFish = pickRandomFish();
 		
-		if currentFish == null:
+		if GameState.currentFish == null:
 			fishingStatus.text = "The water is quiet... nothing left to find."
 			return;
 		
@@ -166,13 +166,13 @@ func showDialogue():
 	add_child(dialogue_instance); # add to tree ; placing address to visible land
 	
 	dialogue_instance.dialogue_finished.connect(onDialogueFinished);
-	dialogue_instance.setup(currentFish); # puts Fish into instance ; putting furniture into house
+	dialogue_instance.setup(GameState.currentFish); # puts Fish into instance ; putting furniture into house
 	
 func onDialogueFinished(outcome: String) -> void:
 	match outcome:
 		"freed":
 			characterBoat.visible = true;
-			GameState.free_soul(currentFish.fish_id);
+			GameState.free_soul(GameState.currentFish.fish_id);
 			fishingStatus.text = "The soul dissolves into light...";
 			
 			# TODO: play dissolve VFX, award soul fragment
