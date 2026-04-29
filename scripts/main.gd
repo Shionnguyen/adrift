@@ -38,7 +38,7 @@ func _ready() -> void:
 	playSkyScene();
 	
 	# show a hint if the user is stuck
-	await get_tree().create_timer(5).timeout;
+	await get_tree().create_timer(3).timeout;
 	$Sky/Dialogue/Label.text = "...\npress [space] to proceed"
 
 
@@ -52,7 +52,7 @@ func _input(event: InputEvent) -> void:
 			skyScene.visible = false
 			gameStarts();
 			
-			await get_tree().create_timer(5).timeout;
+			await get_tree().create_timer(3).timeout;
 			showHint("press [f] key to fish");
 		return;
 	
