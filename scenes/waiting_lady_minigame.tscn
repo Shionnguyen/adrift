@@ -9,13 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://c5lxw8hkch88a" path="res://assets/fishing-pack/Objects/Boat.png" id="5_q6n6n"]
 [ext_resource type="Script" uid="uid://csaal2mgsdbx7" path="res://scripts/waiting_lady/cake_spawner.gd" id="7_ykqj0"]
 [ext_resource type="PackedScene" uid="uid://wkbvakeqgw36" path="res://scenes/waiting_lady/cake.tscn" id="8_ebao5"]
-[ext_resource type="Texture2D" uid="uid://fkr4rln2gp3f" path="res://assets/waiting-lady-assets/present.png" id="8_ykqj0"]
+[ext_resource type="Script" uid="uid://cgsa7nvikpqb5" path="res://scripts/waiting_lady/present_spawner.gd" id="11_bhpuc"]
+[ext_resource type="PackedScene" uid="uid://dtjorosl10sst" path="res://scenes/waiting_lady/present.tscn" id="12_5cvaq"]
+[ext_resource type="Texture2D" uid="uid://dwkik8ntor5eb" path="res://assets/waiting-lady-assets/hearts.png" id="12_bhpuc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_frcnd"]
 size = Vector2(43, 24)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ebao5"]
-size = Vector2(23, 21)
 
 [node name="waiting_lady_minigame" type="Node2D" unique_id=1253465488]
 script = ExtResource("1_ebao5")
@@ -26,17 +25,19 @@ scale = Vector2(0.39598835, 0.3959883)
 texture = ExtResource("1_wmx42")
 
 [node name="Lady" type="Sprite2D" parent="." unique_id=1759731039]
+visible = false
 texture_filter = 1
 position = Vector2(597.00006, 41)
 scale = Vector2(0.16469957, 0.16469957)
 texture = ExtResource("2_frcnd")
 
 [node name="UiOverlay" type="Sprite2D" parent="." unique_id=2017043720]
+visible = false
 position = Vector2(597.6875, 44.919052)
 scale = Vector2(0.3473501, 0.3473501)
 texture = ExtResource("3_y7tm1")
 
-[node name="player" type="CharacterBody2D" parent="." unique_id=1678963473]
+[node name="player" type="CharacterBody2D" parent="." unique_id=1678963473 groups=["player"]]
 script = ExtResource("4_wmx42")
 
 [node name="Boy" type="Sprite2D" parent="player" unique_id=940890098]
@@ -57,13 +58,22 @@ shape = SubResource("RectangleShape2D_frcnd")
 script = ExtResource("7_ykqj0")
 cake_scene = ExtResource("8_ebao5")
 
-[node name="Present" type="Area2D" parent="." unique_id=100374397]
-position = Vector2(238, -34)
+[node name="PresentSpawner" type="Node" parent="." unique_id=1622192329]
+script = ExtResource("11_bhpuc")
+present_scene = ExtResource("12_5cvaq")
 
-[node name="PresentSprite" type="Sprite2D" parent="Present" unique_id=1693264655]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=961382185]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Hearts" type="Sprite2D" parent="HBoxContainer" unique_id=1996882830]
 texture_filter = 1
-texture = ExtResource("8_ykqj0")
+position = Vector2(39, 21)
+scale = Vector2(1.6607144, 1.6607145)
+texture = ExtResource("12_bhpuc")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Present" unique_id=360700599]
-position = Vector2(0, -1)
-shape = SubResource("RectangleShape2D_ebao5")
+[node name="Hearts2" type="Sprite2D" parent="HBoxContainer" unique_id=280075532]
+texture_filter = 1
+position = Vector2(78, 22)
+scale = Vector2(1.6607144, 1.6607145)
+texture = ExtResource("12_bhpuc")

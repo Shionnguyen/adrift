@@ -8,7 +8,10 @@ var screen_height: float
 
 func _ready() -> void:
 	screen_height = get_viewport_rect().size.y
+	
 	body_entered.connect(func(body):
+		#print("something entered cake: ", body.name)
+		
 		if body.is_in_group("player"):
 			emit_signal("hit_player")
 			queue_free()

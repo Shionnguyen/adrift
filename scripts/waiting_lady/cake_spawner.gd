@@ -43,5 +43,10 @@ func _spawn_wave() -> void:
 		var cake = cake_scene.instantiate()
 		cake.position = Vector2(randf_range(40, screen_size.x - 40), -40)
 		cake.speed = randf_range(current_config.min_speed, current_config.max_speed)
-		cake.hit_player.connect(func(): emit_signal("cake_hit_player"))
+		
+		cake.hit_player.connect(func(): 
+			if is_instance_valid(cake):
+				emit_signal("cake_hit_player")
+		)
+		
 		get_parent().add_child(cake)

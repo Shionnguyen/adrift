@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dtjorosl10sst"]
+
+[ext_resource type="Script" uid="uid://bp6kwxuicejq4" path="res://scripts/waiting_lady/present.gd" id="1_hwahq"]
+[ext_resource type="Texture2D" uid="uid://fkr4rln2gp3f" path="res://assets/waiting-lady-assets/present.png" id="1_su2i0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hwahq"]
+size = Vector2(22, 21)
+
+[node name="Present" type="Area2D" unique_id=1415521976]
+script = ExtResource("1_hwahq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1509096056]
+texture_filter = 1
+texture = ExtResource("1_su2i0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=286012147]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_hwahq")
