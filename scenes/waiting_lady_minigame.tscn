@@ -32,10 +32,17 @@ scale = Vector2(0.16469957, 0.16469957)
 texture = ExtResource("2_frcnd")
 
 [node name="UiOverlay" type="Sprite2D" parent="." unique_id=2017043720]
-visible = false
 position = Vector2(597.6875, 44.919052)
 scale = Vector2(0.3473501, 0.3473501)
 texture = ExtResource("3_y7tm1")
+
+[node name="DialogueLabel" type="Label" parent="UiOverlay" unique_id=1583906967]
+offset_left = -603.67773
+offset_top = -94.77197
+offset_right = -135.61548
+offset_bottom = 83.72229
+theme_override_font_sizes/font_size = 30
+autowrap_mode = 2
 
 [node name="player" type="CharacterBody2D" parent="." unique_id=1678963473 groups=["player"]]
 script = ExtResource("4_wmx42")

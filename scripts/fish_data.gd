@@ -54,7 +54,7 @@ static func firstFish() -> Fish:
 	f.fish_name = "???";
 	f.fish_id = "first_fish";
 	f.portraits = {
-		"default": preload("res://assets/fishing-pack/Icons/Icons_10.png"),
+		"default": preload("res://assets/fish portrait/first/plain.PNG"),
 	}
 	f.dialogue = [
 		{

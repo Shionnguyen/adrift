@@ -1,27 +1,38 @@
 # waiting_lady_minigame.gd
 extends Node2D
 
-signal minigame_finished(outcome: String);
+signal minigame_finished(outcome: String)
 
-# sprite spawner
-@onready var cake_spawner = $CakeSpawner;
-@onready var present_spawner = $PresentSpawner;
-
-# hp
+@onready var cake_spawner = $CakeSpawner
+@onready var present_spawner = $PresentSpawner
 @onready var heart1 = $HBoxContainer/Hearts
 @onready var heart2 = $HBoxContainer/Hearts2
-var lives: int = 2;
 
-# Called when the node enters the scene tree for the first time.
+# hook these up to your actual UI nodes
+@onready var lady_overlay = $UiOverlay
+@onready var dialogue_label = $UiOverlay/DialogueLabel  # adjust path to match your scene
+
+var lives: int = 2
+var current_stage: int = 1
+
+const STAGE_DIALOGUE = {
+	1: "You know, perhaps it would be easier if you simply stayed. My dolls would be so happy to have a new friend.",
+	2: "What is so wrong with that? What is so wrong with me?",
+}
+
+const WIN_DIALOGUE = "I... I'm sorry. I shouldn't have. I just... I only ever wanted a friend."
+
 func _ready() -> void:
 	cake_spawner.cake_hit_player.connect(_on_cake_hit)
 	present_spawner.all_collected.connect(_on_stage_cleared)
+	lady_overlay.visible = false
 	start_stage(1)
-	
+
 func start_stage(s: int) -> void:
-	$CakeSpawner.start(s)
-	$PresentSpawner.spawn(s)
-	
+	current_stage = s
+	cake_spawner.start(s)
+	present_spawner.spawn(s)
+
 func _on_cake_hit() -> void:
 	lives -= 1
 	_update_hearts()
@@ -33,9 +44,33 @@ func _update_hearts() -> void:
 	heart1.visible = lives >= 1
 
 func _on_stage_cleared() -> void:
-	print("stage cleared!")  # hook up stage progression here next
+	cake_spawner.stop()
+	
+	if current_stage >= 3:
+		_show_dialogue(WIN_DIALOGUE, func():
+			emit_signal("minigame_finished", "won")
+		)
+	else:
+		_show_dialogue(STAGE_DIALOGUE[current_stage], func():
+			start_stage(current_stage + 1)
+		)
+
+func _show_dialogue(text: String, on_done: Callable) -> void:
+	lady_overlay.visible = true
+	dialogue_label.text = ""
+
+	var typing_tween = create_tween()
+	for i in range(text.length()):
+		typing_tween.tween_callback(func():
+			dialogue_label.text = text.left(dialogue_label.text.length() + 1)
+		).set_delay(0.03)
+
+	typing_tween.tween_interval(2.5)
+	typing_tween.tween_callback(func():
+		lady_overlay.visible = false
+		on_done.call()
+	)
 
 func _lose() -> void:
 	cake_spawner.stop()
-	print("you died")
 	emit_signal("minigame_finished", "dead")
