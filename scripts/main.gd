@@ -12,7 +12,7 @@ var onSkyScene: bool = true;
 #@onready var animations;
 
 # character assets
-@onready var characterBoat = $Game/characterBoat;
+@onready var characterBoat =  $Game/characterBoat;
 
 # labels
 @onready var hintOverlay = $Game/HintOverlay;
@@ -170,12 +170,12 @@ func showDialogue():
 	
 func onDialogueFinished(outcome: String) -> void:
 	match outcome:
-		"escaped":
+		"freed":
 			characterBoat.visible = true;
 			GameState.free_soul(currentFish.fish_id);
-			fishingStatus.text = "The soul dissolves into light..."
+			fishingStatus.text = "The soul dissolves into light...";
+			
 			# TODO: play dissolve VFX, award soul fragment
-			print("SOUL FREED — good end")
 
 		"ran_away":
 			characterBoat.visible = true;
@@ -185,6 +185,7 @@ func onDialogueFinished(outcome: String) -> void:
 
 		"blackout":
 			# Waiting Lady — player ate the cake
+			fishingStatus.text = "you passed out...";
 			doBlackout("YOU PASSED OUT.\nWhy would you eat something offered by a stranger :/")
 
 		"minigame":
@@ -192,7 +193,12 @@ func onDialogueFinished(outcome: String) -> void:
 			# TODO: load flower minigame scene, pass _current_fish back in
 			fishingStatus.text = "Something is happening... *minigame wip*"
 			print("MINIGAME TRIGGERED")
-	
+		
+		
+		
+	print("SOUL " + outcome + "\n" 
+		+ "Soul Bar: " + str(GameState.soul_bar) + "/" + str(GameState.soul_bar_max) + "\n" 
+		+ "Current Tier: " + str(GameState.soul_tier));
 	onDialoguePresent = false;
 
 # ---------------------------------------------------------------------------

@@ -5,7 +5,7 @@ enum Type { GENTLE, HEAVY }
 enum Outcome { ESCAPED, RAN_AWAY, FREED, PASSED_OUT }
 
 @export var fish_id: String = ""; # unique key e.g. "kid_fish", "waiting_lady"
-@export var fish_name: String = "";
+@export var fish_name: String = ""; # display name
 @export var portrait: Texture2D;
 
 # for heavy hearted souls

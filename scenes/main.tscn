@@ -8,9 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://b4frc68teh6v4" path="res://assets/sky/Clouds 1/3.png" id="4_jkv2x"]
 [ext_resource type="Script" uid="uid://x54n0vg3r0h1" path="res://scripts/playerAnimations.gd" id="5_85g3d"]
 [ext_resource type="Texture2D" uid="uid://dlg7ahu6u0k3a" path="res://assets/sky/Clouds 1/4.png" id="5_jbj1t"]
-[ext_resource type="Texture2D" uid="uid://c5lxw8hkch88a" path="res://assets/fishing-pack/3 Objects/Boat.png" id="16_muem4"]
+[ext_resource type="Texture2D" uid="uid://c5lxw8hkch88a" path="res://assets/fishing-pack/Objects/Boat.png" id="11_ya4ey"]
 [ext_resource type="Texture2D" uid="uid://c8h2ved6yf0g3" path="res://assets/character/boy.png" id="17_0ld40"]
-[ext_resource type="Texture2D" uid="uid://cejsi34hqkhl5" path="res://assets/fishing-pack/3 Objects/Fish-rod.png" id="17_dp3eg"]
+[ext_resource type="Texture2D" path="res://assets/fishing-pack/3 Objects/Fish-rod.png" id="17_dp3eg"]
 
 [node name="Main" type="Node2D" unique_id=253514747]
 script = ExtResource("1_jyhfs")
@@ -109,7 +109,7 @@ texture = ExtResource("17_0ld40")
 texture_filter = 1
 position = Vector2(134.61111, 235.57814)
 scale = Vector2(1.611111, 1.6111112)
-texture = ExtResource("16_muem4")
+texture = ExtResource("11_ya4ey")
 
 [node name="HintOverlay" type="Label" parent="Game" unique_id=1610239173]
 layout_mode = 0

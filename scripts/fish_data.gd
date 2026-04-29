@@ -51,7 +51,7 @@ static func filterPool(pool: Array) -> Array:
 # ---------------------------------------------------------------------------
 static func firstFish() -> Fish:
 	var f = Fish.new()
-	f.fish_name = "lorem ipsum";
+	f.fish_name = "???";
 	f.fish_id = "first_fish";
 	f.dialogue = [
 		{
@@ -161,6 +161,7 @@ static func waitingLady() -> Fish:
 	var f = Fish.new()
 	f.fish_name = "A Lady"
 	f.fish_id = "waiting_lady"
+	f.portrait = load("res://assets/waiting-lady-assets/lady.png");
 	f.dialogue = [
 		# 0
 		{
@@ -187,8 +188,9 @@ static func waitingLady() -> Fish:
 			"speaker": "player",
 			"text": "",
 			"choices": [
-				{ "label": "Eat the cake.", "next": "blackout" }
-			]
+				{ "label": "Eat the cake.", "next": "blackout"}
+			],
+			"next": -3 # TODO: blackout is saying the fish got freed ? or away. i think something is wrong with the emit signal when blackout
 		},
 		# --- PATH B: who are you waiting for ---
 		# 4

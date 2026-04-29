@@ -161,9 +161,11 @@ func _resolve_next(next_val) -> void:
 
 	match next_val:
 		-1:  # good end — fish escapes
-			_end("escaped")
+			_end("freed")
 		-2:  # bad end — fish runs away
 			_end("ran_away")
+		-3: # blackout -> waiting lady or could become future fish in general
+			_end("blackout")
 		_:   # jump to step index
 			current_step = next_val
 			_show_step(current_step)

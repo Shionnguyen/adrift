@@ -3,9 +3,12 @@
 [ext_resource type="Texture2D" uid="uid://dn64mi6v8723j" path="res://assets/waiting-lady-assets/ocean-background.png" id="1_wmx42"]
 [ext_resource type="Texture2D" uid="uid://ej8gq5mvvqr" path="res://assets/waiting-lady-assets/lady.png" id="2_frcnd"]
 [ext_resource type="Texture2D" uid="uid://b6dctqstobd0t" path="res://assets/waiting-lady-assets/ui-overlay.png" id="3_y7tm1"]
+[ext_resource type="Script" uid="uid://co32nwqtuo4ak" path="res://scripts/waiting_lady/player_movement.gd" id="4_wmx42"]
 [ext_resource type="Texture2D" uid="uid://c8h2ved6yf0g3" path="res://assets/character/boy.png" id="4_ykqj0"]
-[ext_resource type="Texture2D" uid="uid://c5lxw8hkch88a" path="res://assets/fishing-pack/3 Objects/Boat.png" id="5_ebao5"]
-[ext_resource type="Texture2D" uid="uid://cutsehra8nexe" path="res://assets/waiting-lady-assets/heart.png" id="6_f7m6s"]
+[ext_resource type="Texture2D" uid="uid://c5lxw8hkch88a" path="res://assets/fishing-pack/Objects/Boat.png" id="5_q6n6n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_frcnd"]
+size = Vector2(43, 24)
 
 [node name="waiting_lady_minigame" type="Node2D" unique_id=1253465488]
 
@@ -24,24 +27,19 @@ position = Vector2(597.6875, 44.919052)
 scale = Vector2(0.3473501, 0.3473501)
 texture = ExtResource("3_y7tm1")
 
-[node name="Boy" type="Sprite2D" parent="." unique_id=940890098]
+[node name="player" type="CharacterBody2D" parent="." unique_id=1678963473]
+script = ExtResource("4_wmx42")
+
+[node name="Boy" type="Sprite2D" parent="player" unique_id=940890098]
 texture_filter = 1
 position = Vector2(167, 244)
 texture = ExtResource("4_ykqj0")
 
-[node name="Boat" type="Sprite2D" parent="." unique_id=373865937]
+[node name="Boat" type="Sprite2D" parent="player" unique_id=373865937]
 texture_filter = 1
 position = Vector2(166, 257)
-texture = ExtResource("5_ebao5")
+texture = ExtResource("5_q6n6n")
 
-[node name="Heart" type="Sprite2D" parent="." unique_id=183633470]
-texture_filter = 1
-position = Vector2(35.046234, 20)
-scale = Vector2(1.5625, 1.5625)
-texture = ExtResource("6_f7m6s")
-
-[node name="Heart2" type="Sprite2D" parent="." unique_id=1922421603]
-texture_filter = 1
-position = Vector2(73.046234, 20.000002)
-scale = Vector2(1.5625, 1.5625)
-texture = ExtResource("6_f7m6s")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player" unique_id=632006502]
+position = Vector2(167.5, 245)
+shape = SubResource("RectangleShape2D_frcnd")
