@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://wkbvakeqgw36"]
+
+[ext_resource type="Texture2D" uid="uid://3ospsk6l5bqu" path="res://assets/waiting-lady-assets/cake.png" id="1_kpp34"]
+[ext_resource type="Script" uid="uid://cyiam2ok0d425" path="res://scripts/waiting_lady/cake.gd" id="1_lmo0m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kv4gm"]
+radius = 14.0
+
+[node name="Cake" type="Area2D" unique_id=1421499368]
+script = ExtResource("1_lmo0m")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=260570583]
+texture_filter = 1
+texture = ExtResource("1_kpp34")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1284644233]
+shape = SubResource("CircleShape2D_kv4gm")
