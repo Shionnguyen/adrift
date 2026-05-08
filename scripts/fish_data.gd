@@ -239,6 +239,107 @@ static func kidFish():
 	var f = Fish.new()
 	f.fish_name = "Kid"
 	f.fish_id = "kid_fish"
+	f.potraits = {
+			"default"
+		}
+	f.dialogue = [
+		# 0
+		{
+			"speaker": "fish",
+			"text": "...Oh. You're not carrying a folder.",
+			"delay": 1.2
+		},
+		# 1
+		{
+			"speaker": "fish",
+			"text": "You look tired though. Are you one of my tutors?",
+			"delay": 0.8
+		},
+		# 2 - first choice
+		{
+			"speaker": "player",
+			"text": "",
+			"choices": [
+				{"label": "No, I am not.", "next": 3},
+				{"label": "Do I look like I would grade you?", "next": 4}
+			]
+		},
+		# ---OP1---
+		# 3
+		{
+			"speaker": "fish",
+			"text": "You're NOT my tutor?",
+			"delay": 0.5
+		},
+		{
+			"speaker": "fish",
+			"text": "Are you here to play with me instead???",
+			"delay": 0.4
+		},
+		{
+			"speaker": "fish",
+			"text": "Because I can play. And I always win. Hehe.",
+			"delay": 0.6,
+			"next": 6
+		},
+		# ---OP2---
+		# 4
+		{
+			"speaker": "fish",
+			"text": "...Hahaha. probably not, honestly.",
+			"delay": 0.8
+		}, 
+		# 5
+		{
+			"speaker": "fish",
+			"text": "My papers are like... a hundred pages long. And they keep adding more. It's fine though - you don't have to. We should play instead. That sounds way more fyn than grading anyway.",
+			"delay": 1.0,
+			"next": 6
+		},
+		# ---BOTH PATHS MEET HERE---
+		# 6
+		{
+			"speaker": "fish",
+			"text": "Okay. But if we are playing - there are rules.",
+			"delay": 1.0
+		},
+		# 7
+		{
+			"speaker": "fish",
+			"text": "No stopping halfway. No giving up. And no pretending you undersyand when you dont.",
+			"delay": 1.2
+		},
+		# 8
+		{
+			"speaker": "fish",
+			"test": "I called it...the MEGA ULTRA SURPEME FUN AND FRIENDLY TRIVIA QUESTIONS TO REDEEM YOUR WORTHY OR NOT.",
+			"delay": 0.6
+		},
+		# 9
+		{
+			"speaker": "fish",
+			"text": "There 's a prize at then edn/ So you'd better stay. And tget them all right.",
+			"delay": 0.6
+		},
+		# 10 - second choice
+		{
+			"speaker": "player",
+			"test": "",
+			"choices": [
+				{ "label": "...the what. you take games really seriouasly, huh.", "next": 11 },
+				{"label": "Okay. I'm in. Show me what you got.",                  "next": 11}
+			]
+		},
+		# 11 - both lead to game start
+		{
+			"speaker": "fish",
+			"text": "Good. Then let's begin.",
+			"delay": 1.5,
+			"next": "minigame_trivia"
+		}
+	]
+	
+	return f
 	
 	# for when the kid fish is freed:
 	# GameState.collected_items["kid_soundtrack"] = true
